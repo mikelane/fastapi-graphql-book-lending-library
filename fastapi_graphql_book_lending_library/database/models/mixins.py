@@ -6,8 +6,7 @@ from sqlalchemy.exc import SQLAlchemyError
 class ModelManagementMixin:
     def save(self):
         logger.info(f"Saving {self!r}")
-        with db():
-            db.session.add(self)
+        db.session.add(self)
         self._flush()
         return self
 
@@ -19,15 +18,13 @@ class ModelManagementMixin:
 
     def delete(self):
         logger.info(f"Deleting {self!r}")
-        with db():
-            db.session.delete(self)
+        db.session.delete(self)
         self._flush()
 
     def _flush(self):
-        with db():
-            try:
-                db.session.flush()
-            except SQLAlchemyError as e:
-                logger.info(e)
-                db.session.rollback()
-                raise e
+        try:
+            db.session.flush()
+        except SQLAlchemyError as e:
+            logger.info(e)
+            db.session.rollback()
+            raise e

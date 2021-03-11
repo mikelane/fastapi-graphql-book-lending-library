@@ -6,7 +6,7 @@ from fastapi_sqlalchemy import DBSessionMiddleware
 from loguru import logger
 from starlette.graphql import GraphQLApp
 
-from .query import Query
+from fastapi_graphql_book_lending_library.graphql.query import Query
 
 
 def create_app() -> FastAPI:
