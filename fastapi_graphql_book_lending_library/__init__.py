@@ -6,11 +6,6 @@ from fastapi_sqlalchemy import DBSessionMiddleware
 from loguru import logger
 from starlette.graphql import GraphQLApp
 
-from fastapi_graphql_book_lending_library.database.models import (
-    User,
-    UserType,
-)
-
 from .query import Query
 
 
