@@ -1,3 +1,4 @@
+from graphene_sqlalchemy import SQLAlchemyObjectType
 from sqlalchemy import (
     Column,
     String,
@@ -11,3 +12,9 @@ class User(ModelBase):
 
     def __repr__(self):
         return f"<User: {self.email}>"
+
+
+class UserType(SQLAlchemyObjectType):
+    class Meta:
+        model = User
+        only_fields = ["email", "updated_at"]
